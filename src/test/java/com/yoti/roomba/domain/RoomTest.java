@@ -6,6 +6,7 @@ import static com.yoti.roomba.domain.Room.Point;
 import static org.junit.Assert.*;
 
 public class RoomTest {
+
     @Test
     public void shouldCreateRoomWithXYDimensions() {
         Room room = new Room(5, 5);
@@ -43,18 +44,29 @@ public class RoomTest {
     public void shouldValidatePointsWithinRoomLimits() {
         Room room = new Room(2, 2);
 
-        assertFalse(room.withinLimits(new Point(2, 2), new Point(3, 3), new Point(2, 3)));
+        assertFalse(room.withinLimits(new Point(0,-1), new Point(2, 2), new Point(3, 3), new Point(2, 3)));
         assertTrue(room.withinLimits(new Point(0, 1), new Point(1, 1), new Point(1, 0)));
     }
 
     @Test
     public void shouldRemoveDirtOnDemand() {
         Room room = new Room(2, 2);
-        Point point = new Point(1,0);
+        Point point = new Point(1, 0);
         room.setDirtAt(point);
 
         assertTrue(room.isDirtAt(point));
         room.removeDirtAt(point);
         assertFalse(room.isDirtAt(point));
+    }
+
+    @Test
+    public void roomShouldProvideNextAvailableSpotOk() {
+        Room room = new Room(2, 2);
+        Point point = new Point(1, 0);
+
+        assertEquals("failed to provide next spot N", new Point(1, 1), room.nextAvailableSpot(point, Direction.N));
+        assertEquals("failed to provide next spot S", new Point(1, 0), room.nextAvailableSpot(point, Direction.S));
+        assertEquals("failed to provide next spot E", new Point(1, 0), room.nextAvailableSpot(point, Direction.E));
+        assertEquals("failed to provide next spot W", new Point(0, 0), room.nextAvailableSpot(point, Direction.W));
     }
 }
