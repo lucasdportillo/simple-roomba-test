@@ -1,0 +1,5 @@
+assemble:
+	./gradlew clean assemble
+
+run: assemble
+	java -jar $(ARG) build/libs/*.jar
