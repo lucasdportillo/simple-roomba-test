@@ -1,6 +1,9 @@
-package com.yoti.roomba.domain;
+package com.yoti.roomba.service;
 
 import com.yoti.roomba.controller.domain.RoombaInputParameter;
+import com.yoti.roomba.domain.Direction;
+import com.yoti.roomba.domain.Room;
+import com.yoti.roomba.domain.Roomba;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,9 +18,11 @@ public class CleanInfoRequest {
     private Room room;
     private Roomba roomba;
     private Room.Point startPosition;
+    private RoombaInputParameter parameter;
 
     public static CleanInfoRequest from(RoombaInputParameter parameter) {
         CleanInfoRequest cleanInfoRequest = new CleanInfoRequest();
+        cleanInfoRequest.setParameter(parameter);
 
         Room room = readRoomDimensions(parameter);
         room.setDirtAt(readPatchesOfDirt(parameter));
@@ -37,6 +42,7 @@ public class CleanInfoRequest {
         }
         return patchList.toArray(new Room.Point[]{});
     }
+
     private static Room.Point readStartPosition(RoombaInputParameter parameter) {
         return new Room.Point(parameter.getCoordenates()[0], parameter.getCoordenates()[1]);
     }

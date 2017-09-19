@@ -6,12 +6,12 @@ import lombok.Getter;
 import lombok.ToString;
 
 
-class Room {
+public class Room {
     @Getter
     private int x, y;
     private boolean[][] placesWithDirt;
 
-    Room(int x, int y) {
+    public Room(int x, int y) {
         this.x = x;
         this.y = y;
         placesWithDirt = new boolean[x][y];
@@ -61,7 +61,7 @@ class Room {
     @AllArgsConstructor
     @ToString
     @EqualsAndHashCode
-    static class Point {
+    public static class Point {
         private int x, y;
 
         boolean isNextTo(Point other) {

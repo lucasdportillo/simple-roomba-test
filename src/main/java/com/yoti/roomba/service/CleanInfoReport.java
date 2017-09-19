@@ -1,4 +1,4 @@
-package com.yoti.roomba.domain;
+package com.yoti.roomba.service;
 
 import lombok.Getter;
 import lombok.Setter;

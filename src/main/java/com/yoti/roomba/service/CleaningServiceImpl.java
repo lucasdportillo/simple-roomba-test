@@ -1,5 +1,6 @@
-package com.yoti.roomba.domain;
+package com.yoti.roomba.service;
 
+import com.yoti.roomba.domain.Roomba;
 import org.springframework.stereotype.Service;
 
 @Service

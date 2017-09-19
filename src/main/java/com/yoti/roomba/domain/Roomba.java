@@ -1,12 +1,11 @@
 package com.yoti.roomba.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Queue;
 
-class Roomba {
+public class Roomba {
     @Getter
     @Setter
     private Room room;
@@ -26,7 +25,7 @@ class Roomba {
         this.cleaningDirections = cleaningDirections;
     }
 
-    void startCleaningAt(Room.Point beginning) {
+    public void startCleaningAt(Room.Point beginning) {
         if (room.withinLimits(beginning)) {
             cleanAt(beginning);
             Room.Point next = beginning;

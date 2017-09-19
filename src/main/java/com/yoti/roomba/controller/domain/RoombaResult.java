@@ -1,7 +1,7 @@
 package com.yoti.roomba.controller.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.yoti.roomba.domain.CleanInfoReport;
+import com.yoti.roomba.service.CleanInfoReport;
 import lombok.Getter;
 import lombok.Setter;
 
