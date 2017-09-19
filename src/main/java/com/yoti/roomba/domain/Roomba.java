@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import java.util.Queue;
 
-@AllArgsConstructor
 class Roomba {
     @Getter
     @Setter
@@ -16,14 +15,34 @@ class Roomba {
     @Setter
     private Queue<Direction> cleaningDirections;
 
+    @Getter
+    private int totalPatches = 0;
+
+    @Getter
+    private Room.Point finalPosition;
+
+    public Roomba(Room room, Queue<Direction> cleaningDirections) {
+        this.room = room;
+        this.cleaningDirections = cleaningDirections;
+    }
+
     void startCleaningAt(Room.Point beginning) {
         if (room.withinLimits(beginning)) {
-            room.removeDirtAt(beginning);
+            cleanAt(beginning);
             Room.Point next = beginning;
-            for (Direction direction: cleaningDirections) {
+            for (Direction direction : cleaningDirections) {
                 next = room.nextAvailableSpot(next, direction);
-                room.removeDirtAt(next);
+                cleanAt(next);
             }
         }
     }
+
+    private void cleanAt(Room.Point point) {
+        if (room.isDirtAt(point)) {
+            room.removeDirtAt(point);
+            totalPatches++;
+        }
+        finalPosition = point;
+    }
+
 }

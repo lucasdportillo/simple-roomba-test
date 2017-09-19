@@ -21,7 +21,7 @@ class Room {
         return placesWithDirt[point.x][point.y];
     }
 
-    void setDirtAt(Point... points) {
+    public void setDirtAt(Point... points) {
         for (Point p : points) {
             if (withinLimits(p)) {
                 placesWithDirt[p.x][p.y] = true;
@@ -84,5 +84,10 @@ class Room {
             return nextPoint;
         }
 
+        public int[] toArray() {
+            return new int[]{
+                    x, y
+            };
+        }
     }
 }
